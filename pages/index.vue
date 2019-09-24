@@ -72,6 +72,11 @@ export default {
   },
   mounted () {
     this.getAllNewsLetters()
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 200)
+    })
   },
   methods: {
     getAllNewsLetters () {

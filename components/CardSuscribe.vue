@@ -40,26 +40,28 @@
           <v-row class="text-center">
             <div style="width: 100%">
               <img
-                src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                :src="loadImage"
                 style="border-radius: 50%; width: 80px; height: 80px"
                 class="my-5"
               ></img>
             </div>
           </v-row>
-          <v-card-title style="justify-content: center" class="headline">Inside DC</v-card-title>
+          <v-card-title style="justify-content: center" class="headline">{{letter.title}}</v-card-title>
 
-          <v-card-text class="text-center">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+          <v-card-text class="text-center">{{letter.description}}</v-card-text>
 
           <v-text-field
             placeholder="Your email"
             outlined
             style="width: 90%; margin-left: 15px"
+            type="email"
+            v-model="form.email"
           >
           </v-text-field>
 
           <v-card-actions>
             <div class="flex-grow-1"></div>
-            <v-btn color="orange darken-1" style="min-width:95%; margin-right: 7.5px; margin-bottom: 10px" @click.stop="dialog = true">Suscribe</v-btn>
+            <v-btn color="orange darken-1" style="min-width:95%; margin-right: 7.5px; margin-bottom: 10px" @click="suscribe" @click.stop="dialog = false">Suscribe</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -68,16 +70,66 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Swal from 'sweetalert2'
 export default {
   props: ['letter'],
   data () {
     return {
-      dialog: false
+      dialog: false,
+      form: {
+        email: '',
+        newsletter_id: ''
+      }
     }
   },
   computed: {
     loadImage () {
       return this.letter.image
+    }
+  },
+  methods: {
+    suscribe () {
+      const url = 'https://newsletters.academlo.com/api/v1/users'
+      const data = {
+        email: this.form.email,
+        newsletter_id: this.letter.id
+      }
+      axios
+        .post(url, data)
+        .then((response) => {
+          console.log(response.data)
+          // alert('Se registró exitosamente')
+          // Swal.fire(
+          //   'Good job!',
+          //   'You clicked the button!',
+          //   'success'
+          // )
+          Swal.fire({
+            background: '#424242',
+            position: 'top-center',
+            type: 'success',
+            title: 'Te has suscrito exitosamente',
+            showConfirmButton: false,
+            timer: 2500
+          })
+        })
+        .catch(() => {
+          // alert('Tuvimos un error')
+          // Swal.fire(
+          //   'Tuvimos un error!',
+          //   'You clicked the button!',
+          //   'error'
+          // )
+          Swal.fire({
+            background: '#424242',
+            position: 'top-center',
+            type: 'error',
+            title: 'Hubo un error !',
+            showConfirmButton: false,
+            timer: 2500
+          })
+        })
     }
   }
 }
@@ -87,6 +139,7 @@ export default {
 .div-card{
    width: 72%
 }
+
 @media only screen and (min-width: 360px) and (max-width: 600px) {
   .div-card{
     width: 62%

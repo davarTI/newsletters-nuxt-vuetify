@@ -12,8 +12,8 @@
             <v-icon>{{ items[1].icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <nuxt-link :to="sendSlug+tag.slug" style="text-decoration: none;">
-              <v-list-item-title v-text="tag.name" />
+            <nuxt-link active-class="highlighted" :to="sendSlug+tag.slug" style="text-decoration: none;">
+              <v-list-item-title v-text="tag.name" class="tag-hover"/>
             </nuxt-link>
           </v-list-item-content>
         </v-list-item>
@@ -92,3 +92,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tag-hover:hover {
+  color: white;
+}
+</style>

@@ -7,9 +7,9 @@
       <h4>Packed with the trends, news & links you need to be smart, informed, and ahead of the curve.</h4>
     </v-row>
     <v-row>
-        <div v-if="individualLetters.newsletters.length < 1" class="mt-7 ml-2 title" style="color: orange">No existen boletines para la categoría seleccionada.</div>
+        <div v-show="!individualLetters.newsletters.length" class="mt-7 ml-2 title" style="color: orange">No existen boletines para la categoría seleccionada.</div>
         <v-col v-for="(letter, index) in individualLetters.newsletters" :key="index" sm="4" md="3">
-            <card-suscribe :letter="letter"></card-suscribe>
+          <card-suscribe :letter="letter"></card-suscribe>
         </v-col>
     </v-row>
     <v-row id="div-hide" v-show="false">
@@ -59,6 +59,11 @@ export default {
   },
   mounted () {
     this.getLetterByCategory()
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 200)
+    })
   },
   methods: {
     getLetterByCategory () {
@@ -71,7 +76,7 @@ export default {
         .get(URL_L)
         .then((response) => {
           this.individualLetters = response.data
-          // console.log(this.individualLetters)
+          console.log(this.individualLetters)
         })
         .catch((error) => {
           console.log(error.response)
