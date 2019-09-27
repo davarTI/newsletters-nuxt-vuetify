@@ -35,7 +35,12 @@
     <v-row justify="center">
       <h4>If these newsletters reach their goals (or get a sponsorship), we'll bring on experts writers and launch them. Vote for all your favorites.</h4>
     </v-row>
-    <card-vote></card-vote><br>
+     <v-row>
+        <v-col v-for="(letter, idx) in letters" :key="idx" sm="4" md="3">
+          <card-vote :letter="letter"></card-vote>
+        </v-col>
+    </v-row>
+    <br>
     <v-row>
       <v-flex style="max-width: 280px">
         <h2 class="text-center">Have an idea for a newsletter?</h2>
@@ -80,14 +85,12 @@ export default {
   },
   methods: {
     getAllNewsLetters () {
-      // const URL_L = process.env.VUE_APP_API + '/newsletters'
+      // const URL_L = process.env.apiUrl + '/newsletters'
       const URL_L = 'https://newsletters.academlo.com/api/v1/newsletters'
-      // console.log(URL_L)
       axios
         .get(URL_L)
         .then((response) => {
           this.letters = response.data
-          // console.log(this.letters)
         })
         .catch((error) => {
           console.log(error.response)

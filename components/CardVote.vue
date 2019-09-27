@@ -1,12 +1,12 @@
 <template>
   <v-row>
-    <v-col v-for="n in 4" :key="n" sm="4" md="3">
+    <v-col style="min-width: 105%">
       <v-card>
         <v-row>
           <div style="width: 100%; display: flex">
-            <div style="width: 20%" class="ml-2">
+            <div style="width: 20%" class="ml-1">
               <img
-                src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                :src="loadImage"
                 style="border-radius: 50%; width:70px; height: 80px"
                 class="my-5 mx-2"
               />
@@ -14,17 +14,16 @@
             </div>
             <div style="width: 60%" class="ml-10">
               <br />
-              <h2>Inside DC</h2>
+              <h2>{{letter.title}}</h2>
               <br />
-              <h4>Greyhound divisely hello coldly fonwderfully.</h4>
+              <h4>{{letter.description}}</h4>
             </div>
           </div>
         </v-row>
         <br />
         <v-row>
           <v-btn class="justify-space-between ml-4 mr-4 text-capitalize" style="min-width:90%">
-            <v-icon>mdi-email</v-icon>
-            Vote
+            <v-icon>mdi-email</v-icon>Vote
             <v-icon class="ml-5">mdi-chevron-right</v-icon>
           </v-btn>
         </v-row>
@@ -41,11 +40,12 @@
         </v-row>
         <div style="min-width:100%; display: flex">
           <div>
-            <h2 class="caption font-weight-bold pt-1">3000</h2>
+            <h2 class="caption font-weight-bold pt-1">{{power}}</h2>
             <h2 class="caption">SUSCRIBED</h2>
           </div>
           <div style="width: 100%">
-            <h2 class="float-right caption font-weight-bold pt-1">3000</h2><br>
+            <h2 class="float-right caption font-weight-bold pt-1">300</h2>
+            <br />
             <h2 class="float-right caption">TARGET</h2>
           </div>
         </div>
@@ -56,14 +56,39 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  props: [],
+  props: ['letter'],
   data: () => ({
-    power: 78
-  })
+    // cards: [],
+    power: '',
+    temp: ''
+  }),
+  computed: {
+    loadImage () {
+      return this.letter.image
+    }
+  },
+  mounted () {
+    this.suscribe()
+  },
+  methods: {
+    suscribe () {
+      const url = 'https://newsletters.academlo.com/api/v1/users'
+      axios
+        .get(url)
+        .then((response) => {
+          this.temp = (response.data.length * 100) / 300
+          this.power = this.temp.toFixed()
+          // console.log(response.data.length)
+        })
+        .catch((error) => {
+          console.log(error.response)
+        })
+    }
+  }
 }
 </script>
 
 <style scoped>
-
 </style>

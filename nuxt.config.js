@@ -2,7 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'universal',
-
+  env: {
+    apiUrl: process.env.API_URL || 'http://localhost:3000'
+  },
   generate: {
     routes: [
       '/category/'

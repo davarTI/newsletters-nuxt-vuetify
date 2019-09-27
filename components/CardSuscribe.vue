@@ -98,16 +98,9 @@ export default {
       axios
         .post(url, data)
         .then((response) => {
-          console.log(response.data)
-          // alert('Se registró exitosamente')
-          // Swal.fire(
-          //   'Good job!',
-          //   'You clicked the button!',
-          //   'success'
-          // )
+          this.form.email = ''
           Swal.fire({
             background: '#424242',
-            position: 'top-center',
             type: 'success',
             title: 'Te has suscrito exitosamente',
             showConfirmButton: false,
@@ -115,15 +108,8 @@ export default {
           })
         })
         .catch(() => {
-          // alert('Tuvimos un error')
-          // Swal.fire(
-          //   'Tuvimos un error!',
-          //   'You clicked the button!',
-          //   'error'
-          // )
           Swal.fire({
             background: '#424242',
-            position: 'top-center',
             type: 'error',
             title: 'Hubo un error !',
             showConfirmButton: false,

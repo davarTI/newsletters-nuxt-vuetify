@@ -3,17 +3,17 @@
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-list><br>
         <nuxt-link to="/" style="text-decoration: none">
-            <v-icon class="ma-4" style="display: inline">{{ items[0].icon }}</v-icon>
-            <v-list-item-title class="ma-4" style="display: inline" v-text="items[0].title"/><br><br>
+            <v-icon class="ma-4" style="display: inline; color: orange">{{ items[0].icon }}</v-icon>
+            <v-btn text class="ma-4 text-capitalize" style="display: inline; color: white" v-text="items[0].title"/><br><br>
         </nuxt-link><br>
         <h2 class="mb-3"></h2>
         <v-list-item v-for="(tag, i) in tags" :key="i" router exact>
           <v-list-item-action>
-            <v-icon>{{ items[1].icon }}</v-icon>
+            <v-icon style="color: black">{{ items[1].icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <nuxt-link active-class="highlighted" :to="sendSlug+tag.slug" style="text-decoration: none;">
-              <v-list-item-title v-text="tag.name" class="tag-hover"/>
+            <nuxt-link :to="sendSlug+tag.slug" style="text-decoration: none;">
+              <v-btn text style="color: rgb(245, 245, 245, 1)" v-text="tag.name" @click="overlay = !overlay" class="text-capitalize"/>
             </nuxt-link>
           </v-list-item-content>
         </v-list-item>
@@ -38,7 +38,7 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; Hecho por David</span>
+      <span>&copy; CONOCOTO 2019</span>
     </v-footer>
   </v-app>
 </template>
@@ -75,14 +75,12 @@ export default {
   },
   methods: {
     getTags () {
-      // const URL_T = process.env.VUE_APP_API + '/tags'
+      // const URL_T = process.env.apiUrl + '/tags'
       const URL_T = 'https://newsletters.academlo.com/api/v1/tags'
-
       axios
         .get(URL_T)
         .then((response) => {
           this.tags = response.data
-          // console.log(this.tags)
         })
         .catch((error) => {
           console.log(error.response)
@@ -94,7 +92,4 @@ export default {
 </script>
 
 <style scoped>
-.tag-hover:hover {
-  color: white;
-}
 </style>
