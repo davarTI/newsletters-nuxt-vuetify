@@ -7,7 +7,8 @@ export default {
   },
   generate: {
     routes: [
-      '/category/'
+      '/category/',
+      '/newsletters/'
     ]
   },
   /*
@@ -53,7 +54,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    'nuxt-sweetalert2'
+    'nuxt-sweetalert2',
+    'nuxt-material-design-icons'
   ],
   /*
   ** Axios module configuration

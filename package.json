@@ -14,6 +14,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "nuxt": "^2.0.0",
+    "nuxt-material-design-icons": "^1.0.4",
     "nuxt-sweetalert2": "^1.0.0"
   },
   "devDependencies": {

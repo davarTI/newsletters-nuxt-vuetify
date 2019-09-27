@@ -1,11 +1,8 @@
 <template>
   <v-app dark>
     <v-navigation-drawer v-model="drawer" fixed app>
-      <v-list><br>
-        <nuxt-link to="/" style="text-decoration: none">
-            <v-icon class="ma-4" style="display: inline; color: white">home</v-icon>
-            <v-btn class="ma-4 text-capitalize" style="display: inline; color: white" v-text="items[0].title"/><br><br>
-        </nuxt-link><br>
+      <v-list>
+        <br><br>
         <h2 class="mb-3"></h2>
         <v-list-item v-for="(tag, i) in tags" :key="i" router exact>
           <v-list-item-action>
@@ -18,6 +15,8 @@
                 style="color: rgb(245, 245, 245, 1)"
                 v-text="tag.name"
                 class="text-capitalize"
+                outlined
+                block
               />
             </nuxt-link>
           </v-list-item-content>
@@ -26,16 +25,13 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <!-- <v-spacer /> -->
-      <v-toolbar-title class="white--text">[ INSIDE ]</v-toolbar-title>
-      <div class="flex-grow-1"></div>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
-      <v-btn>SPONSORSHIP</v-btn>
+      <v-toolbar-title class="white--text">
+        <nuxt-link to="/" style="text-decoration: none">
+        [ INSIDE ]
+        </nuxt-link>
+      </v-toolbar-title>
+      <v-spacer />
+      <v-btn text>Dashboard</v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
