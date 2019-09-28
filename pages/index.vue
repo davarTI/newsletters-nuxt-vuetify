@@ -85,11 +85,11 @@ export default {
   },
   computed: {
     filterByTarget () {
-      const filter = this.letters.filter(letter => letter.target > letter.subscribed)
+      const filter = this.letters.filter(letter => letter.target < letter.subscribed)
       return filter
     },
     filterBySubs () {
-      const filter = this.letters.filter(letter => letter.target < letter.subscribed)
+      const filter = this.letters.filter(letter => letter.target > letter.subscribed)
       return filter
     }
   },
