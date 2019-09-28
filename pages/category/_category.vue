@@ -36,12 +36,12 @@
       </v-flex>
     </v-row>
     <br><br>
-    <v-row justify="center">
+    <!-- <v-row justify="center">
       <h2>Up-and-coming</h2>
     </v-row>
     <v-row justify="center">
       <h4>If these newsletters reach their goals (or get a sponsorship), we'll bring on experts writers and launch them. Vote for all your favorites.</h4>
-    </v-row>
+    </v-row> -->
     <!-- <card-vote></card-vote> -->
   </v-container>
 </template>

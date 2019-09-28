@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
   layout: 'dashboard',
   data: () => ({
@@ -126,7 +127,28 @@ export default {
           title: 'Inside Security',
           description: 'David Strom`s in-depth cybersecurity news and analysis',
           target: 6.0,
-          suscribed: 24,
+          suscribed: 20,
+          image: ''
+        },
+        {
+          title: 'Inside Security 2',
+          description: 'Daniel Strom`s in-depth cybersecurity news and analysis',
+          target: 7.0,
+          suscribed: 25,
+          image: ''
+        },
+        {
+          title: 'Inside Security 3',
+          description: 'Danilo Strom`s in-depth cybersecurity news and analysis',
+          target: 8.0,
+          suscribed: 30,
+          image: ''
+        },
+        {
+          title: 'Inside Security 4',
+          description: 'Damián Strom`s in-depth cybersecurity news and analysis',
+          target: 9.0,
+          suscribed: 35,
           image: ''
         }
       ]
@@ -140,7 +162,27 @@ export default {
 
     deleteItem (item) {
       const index = this.newsletters.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.newsletters.splice(index, 1)
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        background: '#424242'
+      }).then((result) => {
+        if (result.value) {
+          this.newsletters.splice(index, 1)
+          Swal.fire({
+            background: '#424242',
+            title: 'Deleted!',
+            text: 'Your file has been deleted.',
+            type: 'success'
+          })
+        }
+      })
+      // confirm('Are you sure you want to delete this item?') && this.newsletters.splice(index, 1)
     },
 
     close () {

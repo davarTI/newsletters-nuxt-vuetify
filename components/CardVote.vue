@@ -40,11 +40,11 @@
         </v-row>
         <div style="min-width:100%; display: flex">
           <div>
-            <h2 class="caption font-weight-bold pt-1">{{power}}</h2>
+            <h2 class="caption font-weight-bold pt-1">{{letter.subscribed}}</h2>
             <h2 class="caption">SUSCRIBED</h2>
           </div>
           <div style="width: 100%">
-            <h2 class="float-right caption font-weight-bold pt-1">300</h2>
+            <h2 class="float-right caption font-weight-bold pt-1">{{letter.target}}</h2>
             <br />
             <h2 class="float-right caption">TARGET</h2>
           </div>
@@ -56,36 +56,21 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   props: ['letter'],
   data: () => ({
-    // cards: [],
-    power: '',
-    temp: ''
   }),
   computed: {
     loadImage () {
       return this.letter.image
+    },
+    power () {
+      return this.letter.subscribed
     }
   },
   mounted () {
-    this.suscribe()
   },
   methods: {
-    suscribe () {
-      const url = 'https://newsletters.academlo.com/api/v1/users'
-      axios
-        .get(url)
-        .then((response) => {
-          this.temp = (response.data.length * 100) / 300
-          this.power = this.temp.toFixed()
-          // console.log(response.data.length)
-        })
-        .catch((error) => {
-          console.log(error.response)
-        })
-    }
   }
 }
 </script>

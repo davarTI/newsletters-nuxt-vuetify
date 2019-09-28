@@ -4,7 +4,6 @@
       <!-- <v-flex class="mx-10"> -->
       <v-card>
         <v-row>
-          <!-- src="https://cdn.vuetifyjs.com/images/cards/store.jpg" -->
           <div class="div-card"><br>
             <img
               :src="loadImage"
@@ -50,14 +49,18 @@
 
           <v-card-text class="text-center">{{letter.description}}</v-card-text>
 
-          <v-text-field
-            placeholder="Your email"
-            outlined
-            style="width: 90%; margin-left: 15px"
-            type="email"
-            v-model="form.email"
-          >
-          </v-text-field>
+          <v-form v-model="valid">
+            <v-text-field
+              placeholder="Your email"
+              outlined
+              style="width: 90%; margin-left: 15px"
+              type="email"
+              v-model="form.email"
+              :rules="emailRules"
+              required
+            >
+            </v-text-field>
+          </v-form>
 
           <v-card-actions>
             <div class="flex-grow-1"></div>
@@ -77,10 +80,15 @@ export default {
   data () {
     return {
       dialog: false,
+      valid: false,
       form: {
         email: '',
         newsletter_id: ''
-      }
+      },
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ]
     }
   },
   computed: {

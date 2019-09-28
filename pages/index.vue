@@ -7,7 +7,7 @@
       <h4>Packed with the trends, news & links you need to be smart, informed, and ahead of the curve.</h4>
     </v-row>
     <v-row>
-        <v-col v-for="(letter, index) in letters" :key="index" sm="4" md="3">
+        <v-col v-for="(letter, index) in filterByTarget" :key="index" sm="4" md="3">
           <card-suscribe :letter="letter"></card-suscribe>
         </v-col>
     </v-row>
@@ -36,7 +36,7 @@
       <h4>If these newsletters reach their goals (or get a sponsorship), we'll bring on experts writers and launch them. Vote for all your favorites.</h4>
     </v-row>
      <v-row>
-        <v-col v-for="(letter, idx) in letters" :key="idx" sm="4" md="3">
+        <v-col v-for="(letter, idx) in filterBySubs" :key="idx" sm="4" md="3">
           <card-vote :letter="letter"></card-vote>
         </v-col>
     </v-row>
@@ -82,6 +82,16 @@ export default {
 
       setTimeout(() => this.$nuxt.$loading.finish(), 200)
     })
+  },
+  computed: {
+    filterByTarget () {
+      const filter = this.letters.filter(letter => letter.target > letter.subscribed)
+      return filter
+    },
+    filterBySubs () {
+      const filter = this.letters.filter(letter => letter.target < letter.subscribed)
+      return filter
+    }
   },
   methods: {
     getAllNewsLetters () {
