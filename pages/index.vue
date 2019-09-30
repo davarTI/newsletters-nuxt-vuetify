@@ -5,14 +5,12 @@
     </v-row>
     <v-row justify="center">
       <h4>Packed with the trends, news & links you need to be smart, informed, and ahead of the curve.</h4>
-    </v-row>
-    <v-row>
-        <v-col v-for="(letter, index) in filterByTarget" :key="index" sm="4" md="3">
-          <card-suscribe :letter="letter"></card-suscribe>
-        </v-col>
-    </v-row>
-    <v-row>
-      <v-flex style="max-width:280px">
+    </v-row><br>
+    <v-row style="display: flex">
+      <v-col v-for="(letter, index) in filterByTarget" :key="index" sm="4" md="3">
+        <card-suscribe :letter="letter"></card-suscribe>
+      </v-col><br>
+      <v-flex style="max-width:280px" class="mt-5">
         <h2 class="text-center">Interested in sponsoring a newsletter?</h2>
         <v-row class="text-center">
           <div style="width: 100%">
@@ -28,21 +26,18 @@
         <v-btn style="min-width:95%; margin-left: 15px">GET IN TOUCH</v-btn>
       </v-flex>
     </v-row>
-    <br><br><br>
+    <br><br>
     <v-row justify="center">
       <h2>Up-and-coming</h2>
     </v-row>
     <v-row justify="center">
       <h4>If these newsletters reach their goals (or get a sponsorship), we'll bring on experts writers and launch them. Vote for all your favorites.</h4>
-    </v-row>
-     <v-row>
-        <v-col v-for="(letter, idx) in filterBySubs" :key="idx" sm="4" md="3">
-          <card-vote :letter="letter"></card-vote>
-        </v-col>
-    </v-row>
-    <br>
-    <v-row>
-      <v-flex style="max-width: 280px">
+    </v-row><br>
+    <v-row style="display: flex">
+      <v-col v-for="(letter, idx) in filterBySubs" :key="idx" sm="4" md="3">
+        <card-vote :letter="letter"></card-vote>
+      </v-col><br>
+      <v-flex style="max-width: 280px" class="mt-5">
         <h2 class="text-center">Have an idea for a newsletter?</h2>
         <v-row class="text-center">
           <div style="width: 100%">
@@ -85,12 +80,10 @@ export default {
   },
   computed: {
     filterByTarget () {
-      const filter = this.letters.filter(letter => letter.target < letter.subscribed)
-      return filter
+      return this.letters.filter(letter => letter.target < letter.subscribed)
     },
     filterBySubs () {
-      const filter = this.letters.filter(letter => letter.target > letter.subscribed)
-      return filter
+      return this.letters.filter(letter => letter.target > letter.subscribed)
     }
   },
   methods: {

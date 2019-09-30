@@ -1,11 +1,12 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer v-model="drawer" fixed app>
-      <v-list><br>
+    <v-navigation-drawer v-model="drawer" app clipped>
+      <v-list>
+        <br>
         <nuxt-link to="/" style="text-decoration: none">
             <v-icon class="ma-4" style="display: inline; color: white">home</v-icon>
-            <v-btn class="ma-4 text-capitalize" style="display: inline; color: white" v-text="items[0].title"/><br><br>
-        </nuxt-link><br>
+            <v-btn class="ma-4 text-capitalize" style="display: inline; color: white" v-text="items[0].title"/>
+        </nuxt-link>
         <h2 class="mb-3"></h2>
         <v-list-item v-for="(tag, i) in tags" :key="i" router exact>
           <v-list-item-action>
@@ -24,7 +25,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar clipped-left app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <!-- <v-spacer /> -->
       <v-toolbar-title class="white--text">[ INSIDE ]</v-toolbar-title>
@@ -55,7 +56,6 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      clipped: false,
       drawer: false,
       fixed: false,
       tags: [],
