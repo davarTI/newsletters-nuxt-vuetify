@@ -31,10 +31,14 @@
       <v-toolbar-title class="white--text">[ INSIDE ]</v-toolbar-title>
       <div class="flex-grow-1"></div>
       <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
+        <nuxt-link to="/login" style="text-decoration: none; color: white">
+          <v-icon>mdi-account</v-icon>
+        </nuxt-link>
       </v-btn>
       <v-btn icon>
-        <v-icon>mdi-account</v-icon>
+        <nuxt-link to="/dashboard" style="text-decoration: none; color: white">
+          <v-icon>dashboard</v-icon>
+        </nuxt-link>
       </v-btn>
       <v-btn>SPONSORSHIP</v-btn>
     </v-app-bar>

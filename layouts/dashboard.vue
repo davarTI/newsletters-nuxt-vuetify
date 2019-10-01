@@ -31,6 +31,7 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer />
+      <v-btn>Sign out</v-btn>
       <v-btn text>Dashboard</v-btn>
     </v-app-bar>
     <v-content>

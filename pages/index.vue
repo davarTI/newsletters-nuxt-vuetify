@@ -79,11 +79,11 @@ export default {
     })
   },
   computed: {
-    filterByTarget () {
-      return this.letters.filter(letter => letter.target < letter.subscribed)
-    },
     filterBySubs () {
       return this.letters.filter(letter => letter.target > letter.subscribed)
+    },
+    filterByTarget () {
+      return this.letters.filter(letter => letter.target < letter.subscribed)
     }
   },
   methods: {

@@ -8,7 +8,8 @@ export default {
   generate: {
     routes: [
       '/category/',
-      '/newsletters/'
+      '/dashboard/',
+      '/login/'
     ]
   },
   /*
