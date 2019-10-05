@@ -26,7 +26,8 @@
 export default {
   data () {
     return {
-      clipped: false
+      clipped: false,
+      fixed: false
     }
   }
 }

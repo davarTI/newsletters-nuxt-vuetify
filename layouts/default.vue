@@ -13,7 +13,7 @@
             <v-icon style="color: black">{{ items[i].icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <nuxt-link :to="sendSlug+tag.slug" style="text-decoration: none;">
+            <nuxt-link :to="'/category/'+tag.slug" style="text-decoration: none;">
               <v-btn
                 text
                 style="color: rgb(245, 245, 245, 1)"
@@ -30,11 +30,11 @@
       <!-- <v-spacer /> -->
       <v-toolbar-title class="white--text">[ INSIDE ]</v-toolbar-title>
       <div class="flex-grow-1"></div>
-      <v-btn icon>
+      <!-- <v-btn icon>
         <nuxt-link to="/login" style="text-decoration: none; color: white">
           <v-icon>mdi-account</v-icon>
         </nuxt-link>
-      </v-btn>
+      </v-btn> -->
       <v-btn icon>
         <nuxt-link to="/dashboard" style="text-decoration: none; color: white">
           <v-icon>dashboard</v-icon>
@@ -82,11 +82,6 @@ export default {
           icon: 'ac_unit'
         }
       ]
-    }
-  },
-  computed: {
-    sendSlug () {
-      return '/category/'
     }
   },
   mounted () {

@@ -6,7 +6,7 @@
           <div style="width: 100%; display: flex">
             <div style="width: 20%" class="ml-1">
               <img
-                :src="loadImage"
+                :src="letter.image"
                 style="border-radius: 50%; width:70px; height: 80px"
                 class="my-5 mx-2"
               />
@@ -29,7 +29,7 @@
         </v-row>
         <v-row style="width:95%" class="ml-2">
           <v-progress-linear
-            v-model="power"
+            v-model="letter.subscribed"
             height="12"
             reactive
             class="mt-2"
@@ -58,11 +58,7 @@
         <v-card style="overflow: hidden">
           <v-row class="text-center">
             <div style="width: 100%">
-              <img
-                :src="loadImage"
-                style="border-radius: 50%; width: 80px; height: 80px"
-                class="my-5"
-              ></img>
+              <img :src="letter.image" style="border-radius: 50%; width: 80px; height: 80px" class="my-5"/>
             </div>
           </v-row>
           <v-card-title style="justify-content: center" class="headline">{{letter.title}}</v-card-title>
@@ -99,6 +95,7 @@ export default {
   props: ['letter'],
   data: () => ({
     dialog: false,
+    power: '',
     valid: false,
     form: {
       email: '',
@@ -109,15 +106,11 @@ export default {
       v => /.+@.+/.test(v) || 'E-mail must be valid'
     ]
   }),
-  computed: {
-    loadImage () {
-      return this.letter.image
-    },
-    power () {
-      return this.letter.subscribed
-    }
-  },
   mounted () {
+    this.power = this.letter.subscribed
+  },
+  updated () {
+    this.letter.subscribed = this.power
   },
   methods: {
     suscribe () {
@@ -130,6 +123,7 @@ export default {
         .post(url, data)
         .then((response) => {
           this.form.email = ''
+          this.power = response.data.newsletter.subscribed
           Swal.fire({
             background: '#424242',
             type: 'success',

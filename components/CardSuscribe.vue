@@ -9,7 +9,7 @@
               :src="loadImage"
               style="border-radius: 50%; width:140px"
               class="float-right"
-            ></img>
+            />
           </div>
           <div style="width: 28%">
             <v-btn class="caption">DAILY</v-btn>
@@ -42,7 +42,7 @@
                 :src="loadImage"
                 style="border-radius: 50%; width: 80px; height: 80px"
                 class="my-5"
-              ></img>
+              />
             </div>
           </v-row>
           <v-card-title style="justify-content: center" class="headline">{{letter.title}}</v-card-title>

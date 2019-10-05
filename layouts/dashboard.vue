@@ -9,7 +9,7 @@
             <v-icon style="color: black">{{ items[i].icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <nuxt-link :to="sendSlug+tag.slug" style="text-decoration: none;">
+            <nuxt-link :to="'/category/'+tag.slug" style="text-decoration: none;">
               <v-btn
                 text
                 style="color: rgb(245, 245, 245, 1)"
@@ -31,7 +31,7 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer />
-      <v-btn>Sign out</v-btn>
+      <v-btn @click="logout()">Sign out</v-btn>
       <v-btn text>Dashboard</v-btn>
     </v-app-bar>
     <v-content>
@@ -48,7 +48,6 @@
 
 <script>
 import axios from 'axios'
-
 export default {
   data () {
     return {
@@ -77,11 +76,6 @@ export default {
       ]
     }
   },
-  computed: {
-    sendSlug () {
-      return '/category/'
-    }
-  },
   mounted () {
     this.getTags()
   },
@@ -98,8 +92,12 @@ export default {
           console.log(error.response)
           alert('Existe un problema al cargar la información solicitada.')
         })
+    },
+    logout () {
+      return !this.authenticated && this.$router.push('/login')
     }
-  }
+  },
+  middleware: 'authenticated'
 }
 </script>
 
