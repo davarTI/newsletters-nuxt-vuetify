@@ -18,7 +18,7 @@
               src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
               style="border-radius: 50%; width: 100px; height: 100px"
               class="my-5"
-            ></img>
+            />
           </div>
         </v-row>
         <h3 class="text-center">[ Your logo here ]</h3>
@@ -45,7 +45,7 @@
               src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
               style="border-radius: 50%; width: 100px; height: 100px"
               class="my-5"
-            ></img>
+            />
           </div>
         </v-row>
         <br />

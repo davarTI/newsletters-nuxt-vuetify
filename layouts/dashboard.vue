@@ -48,6 +48,7 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -80,6 +81,7 @@ export default {
     this.getTags()
   },
   methods: {
+    ...mapMutations(['closeSession']),
     getTags () {
       // const URL_T = process.env.apiUrl + '/tags'
       const URL_T = 'https://newsletters.academlo.com/api/v1/tags'
@@ -94,7 +96,8 @@ export default {
         })
     },
     logout () {
-      return !this.authenticated && this.$router.push('/login')
+      this.closeSession()
+      this.$router.push('/login')
     }
   },
   middleware: 'authenticated'

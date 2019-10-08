@@ -25,6 +25,7 @@
                     prepend-icon="lock"
                     v-model="form.password"
                     type="password"
+                    @keyup.enter="onSubmit()"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -62,12 +63,13 @@ export default {
         .post(url, this.form)
         .then((response) => {
           this.login(response.data)
+          console.log(response.data.api_token)
           // alert('Has iniciado sesión exitosamente!')
           this.$router.push('/dashboard')
         })
         .catch((error) => {
           if (error.response && error.response.status === 401) {
-            alert('Las credenciales proporcionadas no existen!')
+            alert('El email o password proporcionados no existen!')
           }
         })
     }

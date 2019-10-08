@@ -55,6 +55,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     'nuxt-sweetalert2',
     'nuxt-material-design-icons'
   ],
