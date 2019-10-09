@@ -98,32 +98,36 @@ export default {
   },
   methods: {
     suscribe () {
-      const url = 'https://newsletters.academlo.com/api/v1/users'
-      const data = {
-        email: this.form.email,
-        newsletter_id: this.letter.id
+      if (this.valid) {
+        const url = 'https://newsletters.academlo.com/api/v1/users'
+        const data = {
+          email: this.form.email,
+          newsletter_id: this.letter.id
+        }
+        axios
+          .post(url, data)
+          .then((response) => {
+            this.form.email = ''
+            Swal.fire({
+              background: '#424242',
+              type: 'success',
+              title: 'Te has suscrito exitosamente',
+              showConfirmButton: false,
+              timer: 2500
+            })
+          })
+          .catch(() => {
+            console.log('Hubo un error!')
+          })
+      } else {
+        Swal.fire({
+          background: '#424242',
+          type: 'error',
+          title: 'Si deseas subscribirte el campo email no puede estar vacío!',
+          showConfirmButton: false,
+          timer: 2500
+        })
       }
-      axios
-        .post(url, data)
-        .then((response) => {
-          this.form.email = ''
-          Swal.fire({
-            background: '#424242',
-            type: 'success',
-            title: 'Te has suscrito exitosamente',
-            showConfirmButton: false,
-            timer: 2500
-          })
-        })
-        .catch(() => {
-          Swal.fire({
-            background: '#424242',
-            type: 'error',
-            title: 'Hubo un error !',
-            showConfirmButton: false,
-            timer: 2500
-          })
-        })
     }
   }
 }

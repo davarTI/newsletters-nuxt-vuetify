@@ -140,7 +140,7 @@ export default {
         Swal.fire({
           background: '#424242',
           type: 'error',
-          title: 'El campo email no puede estar vacío!',
+          title: 'Si deseas votar el campo email no puede estar vacío!',
           showConfirmButton: false,
           timer: 2500
         })
