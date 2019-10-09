@@ -1,43 +1,60 @@
 <template>
   <v-app>
-    <v-content>
-      <v-container>
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <v-card>
-              <v-toolbar dark flat>
-                <v-toolbar-title>Login</v-toolbar-title>
-              </v-toolbar>
-              <hr />
-              <v-card-text>
-                <v-form>
-                  <v-text-field
-                    label="User"
-                    name="login"
-                    prepend-icon="person"
-                    v-model="form.email"
-                    type="text"
-                  ></v-text-field>
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="lock"
-                    v-model="form.password"
-                    type="password"
-                    @keyup.enter="onSubmit()"
-                  ></v-text-field>
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <div class="flex-grow-1"></div>
-                <v-btn color="primary" @click="onSubmit()">Sign in</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
+    <ValidationObserver ref="observer" v-slot="{ passes }">
+      <v-content>
+        <v-container>
+          <v-row align="center" justify="center">
+            <v-col cols="12" sm="8" md="4">
+              <v-card>
+                <v-toolbar dark flat>
+                  <v-toolbar-title>Login</v-toolbar-title>
+                </v-toolbar>
+                <hr />
+                <v-card-text>
+                  <v-form>
+                    <ValidationProvider
+                      rules="required|email"
+                      name="email"
+                      v-slot="{ errors }"
+                    >
+                      <v-text-field
+                        label="User"
+                        name="login"
+                        prepend-icon="person"
+                        v-model="form.email"
+                        type="text"
+                        @keyup.enter="passes(onSubmit)"
+                      ></v-text-field>
+                      <small class="ml-8" style="color: hsl(12, 100%, 43%)">{{ errors[0] }}</small>
+                    </ValidationProvider>
+                    <ValidationProvider
+                      rules="required"
+                      name="password"
+                      v-slot="{ errors }"
+                    >
+                      <v-text-field
+                        id="password"
+                        label="Password"
+                        name="password"
+                        prepend-icon="lock"
+                        v-model="form.password"
+                        type="password"
+                        @keyup.enter="passes(onSubmit)"
+                      ></v-text-field>
+                      <small class="ml-8" style="color: hsl(12, 100%, 43%)">{{ errors[0] }}</small>
+                    </ValidationProvider>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <div class="flex-grow-1"></div>
+                  <v-btn color="primary" @click="passes(onSubmit)">Sign in</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-content>
+    </ValidationObserver>
   </v-app>
 </template>
 
@@ -63,8 +80,7 @@ export default {
         .post(url, this.form)
         .then((response) => {
           this.login(response.data)
-          console.log(response.data.api_token)
-          // alert('Has iniciado sesión exitosamente!')
+          // console.log(response.data.api_token)
           this.$router.push('/dashboard')
         })
         .catch((error) => {

@@ -80,7 +80,7 @@
 
           <v-card-actions>
             <div class="flex-grow-1"></div>
-            <v-btn color="orange darken-1" style="min-width:95%; margin-right: 7.5px; margin-bottom: 10px" @click="suscribe" @click.stop="dialog = false">Suscribe</v-btn>
+            <v-btn color="orange darken-1" style="min-width:95%; margin-right: 7.5px; margin-bottom: 10px" @click="suscribe" @click.stop="dialog = false" @keyup.enter="suscribe">Suscribe</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -114,33 +114,37 @@ export default {
   },
   methods: {
     suscribe () {
-      const url = 'https://newsletters.academlo.com/api/v1/users'
-      const data = {
-        email: this.form.email,
-        newsletter_id: this.letter.id
+      if (this.valid) {
+        const url = 'https://newsletters.academlo.com/api/v1/users'
+        const data = {
+          email: this.form.email,
+          newsletter_id: this.letter.id
+        }
+        axios
+          .post(url, data)
+          .then((response) => {
+            this.form.email = ''
+            this.power = response.data.newsletter.subscribed
+            Swal.fire({
+              background: '#424242',
+              type: 'success',
+              title: 'Te has suscrito exitosamente',
+              showConfirmButton: false,
+              timer: 2500
+            })
+          })
+          .catch(() => {
+            console.log('Hubo un problema!')
+          })
+      } else {
+        Swal.fire({
+          background: '#424242',
+          type: 'error',
+          title: 'El campo email no puede estar vacío!',
+          showConfirmButton: false,
+          timer: 2500
+        })
       }
-      axios
-        .post(url, data)
-        .then((response) => {
-          this.form.email = ''
-          this.power = response.data.newsletter.subscribed
-          Swal.fire({
-            background: '#424242',
-            type: 'success',
-            title: 'Te has suscrito exitosamente',
-            showConfirmButton: false,
-            timer: 2500
-          })
-        })
-        .catch(() => {
-          Swal.fire({
-            background: '#424242',
-            type: 'error',
-            title: 'Hubo un error !',
-            showConfirmButton: false,
-            timer: 2500
-          })
-        })
     }
   }
 }
