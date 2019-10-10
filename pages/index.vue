@@ -97,7 +97,7 @@ export default {
         })
         .catch((error) => {
           console.log(error.response)
-          alert('Existe un problema al cargar la información solicitada.')
+          // alert('Existe un problema al cargar la información solicitada.')
         })
     }
   }

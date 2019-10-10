@@ -28,7 +28,7 @@
                     <v-text-field v-model="editedItem.target" label="Target"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.subscribed" label="Subscribed"></v-text-field>
+                    <v-text-field v-model="editedItem.suscribed" label="Suscribed"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="12" md="6">
                     <v-text-field v-model="editedItem.image" label="Image"></v-text-field>
@@ -69,7 +69,6 @@
 
 <script>
 import Swal from 'sweetalert2'
-import axios from 'axios'
 export default {
   layout: 'dashboard',
   data: () => ({
@@ -83,7 +82,7 @@ export default {
       },
       { text: 'DESCRIPTION', value: 'description' },
       { text: 'TARGET', value: 'target' },
-      { text: 'SUBSCRIBED', value: 'subscribed' },
+      { text: 'SUSCRIBED', value: 'suscribed' },
       { text: 'IMAGE', value: 'image' },
       { text: 'ACTIONS', value: 'action', sortable: false }
     ],
@@ -93,17 +92,16 @@ export default {
       title: '',
       description: '',
       target: 0,
-      subscribed: 0,
+      suscribed: 0,
       image: ''
     },
     defaultItem: {
       title: '',
       description: '',
       target: 0,
-      subscribed: 0,
+      suscribed: 0,
       image: ''
-    },
-    URL_L: 'https://newsletters.academlo.com/api/v1/newsletters'
+    }
   }),
 
   computed: {
@@ -124,27 +122,42 @@ export default {
 
   methods: {
     initialize () {
-      axios
-        .get(this.URL_L)
-        .then((response) => {
-          this.newsletters = response.data
-        })
-        .catch((error) => {
-          console.log(error.response)
-        })
+      this.newsletters = [
+        {
+          title: 'Inside Security',
+          description: 'David Strom`s in-depth cybersecurity news and analysis',
+          target: 6.0,
+          suscribed: 20,
+          image: ''
+        },
+        {
+          title: 'Inside Security 2',
+          description: 'Daniel Strom`s in-depth cybersecurity news and analysis',
+          target: 7.0,
+          suscribed: 25,
+          image: ''
+        },
+        {
+          title: 'Inside Security 3',
+          description: 'Danilo Strom`s in-depth cybersecurity news and analysis',
+          target: 8.0,
+          suscribed: 30,
+          image: ''
+        },
+        {
+          title: 'Inside Security 4',
+          description: 'Damián Strom`s in-depth cybersecurity news and analysis',
+          target: 9.0,
+          suscribed: 35,
+          image: ''
+        }
+      ]
     },
 
     editItem (item) {
+      this.editedIndex = this.newsletters.indexOf(item)
+      this.editedItem = Object.assign({}, item)
       this.dialog = true
-      axios
-        .patch(this.URL_L + `/${item.id}`)
-        .then((response) => {
-          this.editedIndex = this.newsletters.indexOf(item)
-          this.editedItem = Object.assign({}, item)
-        })
-        .catch((error) => {
-          console.log(error.response)
-        })
     },
 
     deleteItem (item) {
