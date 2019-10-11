@@ -21,18 +21,18 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="12" md="6">
+                  <v-col cols="12">
                     <v-text-field v-model="editedItem.description" label="Description"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="2" md="2">
                     <v-text-field v-model="editedItem.target" label="Target"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <!-- <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.subscribed" label="Subscribed"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="12" md="6">
                     <v-text-field v-model="editedItem.image" label="Image"></v-text-field>
-                  </v-col>
+                  </v-col> -->
                 </v-row>
               </v-container>
             </v-card-text>

@@ -9,7 +9,7 @@
             <v-icon style="color: black">{{ items[i].icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <nuxt-link :to="'/category/'+tag.slug" style="text-decoration: none;">
+            <nuxt-link to="#" style="text-decoration: none;">
               <v-btn
                 text
                 style="color: rgb(245, 245, 245, 1)"
