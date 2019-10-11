@@ -135,16 +135,9 @@ export default {
     },
 
     editItem (item) {
+      this.editedIndex = this.newsletters.indexOf(item)
+      this.editedItem = Object.assign({}, item)
       this.dialog = true
-      axios
-        .patch(this.URL_L + `/${item.id}`)
-        .then((response) => {
-          this.editedIndex = this.newsletters.indexOf(item)
-          this.editedItem = Object.assign({}, item)
-        })
-        .catch((error) => {
-          console.log(error.response)
-        })
     },
 
     deleteItem (item) {
@@ -161,6 +154,12 @@ export default {
       }).then((result) => {
         if (result.value) {
           this.newsletters.splice(index, 1)
+          axios
+            .delete(this.URL_L + `/${item.id}`)
+            .then((response) => { })
+            .catch((error) => {
+              console.log(error.response)
+            })
           Swal.fire({
             background: '#424242',
             title: 'Deleted!',
@@ -183,7 +182,19 @@ export default {
     save () {
       if (this.editedIndex > -1) {
         Object.assign(this.newsletters[this.editedIndex], this.editedItem)
+        axios
+          .patch(this.URL_L + `/${this.editedItem.id}`, this.editedItem)
+          .then((response) => {})
+          .catch((error) => {
+            console.log(error.response)
+          })
       } else {
+        axios
+          .post(this.URL_L, this.editedItem)
+          .then((response) => {})
+          .catch((error) => {
+            console.log(error.response)
+          })
         this.newsletters.push(this.editedItem)
       }
       this.close()
