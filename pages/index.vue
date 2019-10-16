@@ -83,7 +83,7 @@ export default {
       return this.letters.filter(letter => letter.target > letter.subscribed)
     },
     filterByTarget () {
-      return this.letters.filter(letter => letter.target < letter.subscribed)
+      return this.letters.filter(letter => letter.target <= letter.subscribed)
     }
   },
   methods: {
