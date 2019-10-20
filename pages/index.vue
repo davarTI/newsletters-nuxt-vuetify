@@ -10,7 +10,7 @@
       <v-col v-for="(letter, index) in filterByTarget" :key="index" sm="4" md="3">
         <card-suscribe :letter="letter"></card-suscribe>
       </v-col><br>
-      <v-flex style="max-width:290px" class="mt-5">
+      <v-flex style="max-width:270px" class="mt-5">
         <h2 class="text-center">Interested in sponsoring a newsletter?</h2>
         <v-row class="text-center">
           <div style="width: 100%">
@@ -37,7 +37,7 @@
       <v-col v-for="(letter, idx) in filterBySubs" :key="idx" sm="4" md="3">
         <card-vote :letter="letter"></card-vote>
       </v-col><br>
-      <v-flex style="max-width: 290px" class="mt-5">
+      <v-flex style="max-width: 270px" class="mt-5">
         <h2 class="text-center">Have an idea for a newsletter?</h2>
         <v-row class="text-center">
           <div style="width: 100%">
@@ -89,7 +89,8 @@ export default {
   methods: {
     getAllNewsLetters () {
       // const URL_L = process.env.apiUrl + '/newsletters'
-      const URL_L = 'https://newsletters.academlo.com/api/v1/newsletters'
+      // const URL_L = 'https://newsletters.academlo.com/api/v1/newsletters'
+      const URL_L = 'https://app-mevn-my-api.herokuapp.com/api/newsletters'
       axios
         .get(URL_L)
         .then((response) => {

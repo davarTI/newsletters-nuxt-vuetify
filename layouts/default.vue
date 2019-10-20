@@ -48,6 +48,8 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
+      <span>Linkedin &nbsp; / &nbsp;</span>
+      <span>Github</span>
       <v-spacer />
       <span>&copy; Desarrollador por: David Armijos</span>
     </v-footer>

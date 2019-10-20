@@ -117,7 +117,6 @@ export default {
       val || this.close()
     }
   },
-
   mounted () {
     this.initialize()
   },

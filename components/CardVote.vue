@@ -4,17 +4,18 @@
       <v-card>
         <v-row>
           <div style="width: 100%; display: flex">
-            <div style="width: 20%" class="ml-1">
+            <div style="width: 20%" class="ml-2">
+              <!-- :src="letter.image" -->
               <img
-                :src="letter.image"
+                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
                 style="border-radius: 50%; width:70px; height: 80px"
                 class="my-5 mx-2"
               />
               <img />
             </div>
-            <div style="width: 60%" class="ml-10">
-              <br />
-              <h2>{{letter.title}}</h2>
+            <div style="width: 60%" class="ml-10 mt-1">
+              <!-- <br /> -->
+              <h2>{{letter.name}}</h2>
               <br />
               <h4>{{letter.description}}</h4>
             </div>
@@ -58,7 +59,8 @@
         <v-card style="overflow: hidden">
           <v-row class="text-center">
             <div style="width: 100%">
-              <img :src="letter.image" style="border-radius: 50%; width: 80px; height: 80px" class="my-5"/>
+              <!-- <img :src="letter.image" style="border-radius: 50%; width: 80px; height: 80px" class="my-5"/> -->
+              <img src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" style="border-radius: 50%; width: 80px; height: 80px" class="my-5"/>
             </div>
           </v-row>
           <v-card-title style="justify-content: center" class="headline">{{letter.title}}</v-card-title>

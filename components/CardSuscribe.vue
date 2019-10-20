@@ -5,8 +5,9 @@
       <v-card>
         <v-row>
           <div class="div-card"><br>
+            <!-- :src="loadImage" -->
             <img
-              :src="loadImage"
+              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
               style="border-radius: 50%; width:140px"
               class="float-right"
             />
@@ -17,7 +18,7 @@
         </v-row>
         <v-row>
           <div style="min-width: 90%">
-            <p class="mb-2 mt-2 ml-5 title font-weight-bold text-center">{{letter.title}}</p>
+            <p class="mb-2 mt-2 ml-5 title font-weight-bold text-center">{{letter.name}}</p>
           </div>
           <p class="body-1 ml-5 text-justify" style="width: 80%">{{letter.description}}</p>
         </v-row>
@@ -38,8 +39,9 @@
         <v-card style="overflow: hidden">
           <v-row class="text-center">
             <div style="width: 100%">
+              <!-- :src="loadImage" -->
               <img
-                :src="loadImage"
+                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
                 style="border-radius: 50%; width: 80px; height: 80px"
                 class="my-5"
               />
