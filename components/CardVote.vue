@@ -8,12 +8,12 @@
               <!-- :src="letter.image" -->
               <img
                 src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                style="border-radius: 50%; width:70px; height: 80px"
+                style="border-radius: 50%; width:80px; height: 80px"
                 class="my-5 mx-2"
               />
               <img />
             </div>
-            <div style="width: 60%" class="ml-10 mt-1">
+            <div style="width: 60%" class="ml-9 mt-1">
               <!-- <br /> -->
               <h2>{{letter.name}}</h2>
               <br />

@@ -72,11 +72,11 @@ export default {
   },
   mounted () {
     this.getAllNewsLetters()
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
+    // this.$nextTick(() => {
+    //   this.$nuxt.$loading.start()
 
-      setTimeout(() => this.$nuxt.$loading.finish(), 200)
-    })
+    //   setTimeout(() => this.$nuxt.$loading.finish(), 200)
+    // })
   },
   computed: {
     filterBySubs () {
@@ -95,6 +95,11 @@ export default {
         .get(URL_L)
         .then((response) => {
           this.letters = response.data
+          this.$nextTick(() => {
+            this.$nuxt.$loading.start()
+
+            setTimeout(() => this.$nuxt.$loading.finish(), 200)
+          })
         })
         .catch((error) => {
           console.log(error.response)

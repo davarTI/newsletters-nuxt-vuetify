@@ -8,8 +8,8 @@
             <!-- :src="loadImage" -->
             <img
               src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-              style="border-radius: 50%; width:140px"
-              class="float-right"
+              style="border-radius: 50%; width:110px"
+              class="float-right mr-5"
             />
           </div>
           <div style="width: 28%">
