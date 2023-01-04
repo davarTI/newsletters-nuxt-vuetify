@@ -14,7 +14,7 @@
   "dependencies": {
     "@nuxtjs/auth": "^4.8.4",
     "@nuxtjs/axios": "^5.3.6",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "nuxt-material-design-icons": "^1.0.4",
     "nuxt-sweetalert2": "^1.0.0",
     "vee-validate": "^3.0.11"
